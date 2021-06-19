@@ -2,23 +2,24 @@
 <html>
     <head>
         <title>Word Counter</title>
+        <script src="index.js"></script>
+
     </head>
     <body>
         <h1><strong>Word Counter</strong></h1>
-        <textarea rows="25" cols="100">
-
-        </textarea>
+        <textarea id = "inputTextArea" rows="15" cols="50"></textarea>
         <br>
-        <button>Calculate</button>
         <!-- Word finder/counter -->
-        <input type="text">
+        <label>Type a word</label>
+        <input id = "inputWordArea" type="text">
         <!-- Word finder/counter -->
+        <button onclick="count()">Calculate</button>
         <div id = "results">
-            <p>Word Count: ____</p>
-            <p>Sentence Count: ____</p>
-            <p>Paragraph Count: ____</p>
-            <p>Bigram Count: ____</p>
-            <p>Given Word Count: ____</p>
+            <p>Word Count: <span id = "words">___</span></p>
+            <p>Sentence Count: <span id = "sentences">___</span></p>
+            <p>Paragraph Count: <span id = "paragraphs">___</span></p>
+            <p>Bigram Count: <span id = "bigram">___</span></p>
+            <p>Given Word Count: <span id = "inputWord">___</span></p>
         </div>
     </body>
 </html>
