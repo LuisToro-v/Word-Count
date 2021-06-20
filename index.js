@@ -7,9 +7,10 @@ function count(){
     paragraphCounter(usersText);
     sentenceCounter(usersText);
     givenWordCounter(words, usersWord);
+    bigramCounter(words);
 }
 function wordCount(words){
-    console.log(words)
+    // console.log(words)
     document.getElementById("words").innerHTML = words.length;
 }
 function paragraphCounter(usersText){
@@ -23,19 +24,37 @@ function sentenceCounter(usersText){
     document.getElementById("sentences").innerHTML = (sentences.length - 1);
 }
 function givenWordCounter(words, usersWord){
-    let word = "";
-    let wordCount = 0;
-    for(let i = 0 ; i < words.length;i++){
-        word = words[i].toLowerCase();
-        if(word.includes(usersWord)){
-            wordCount++;
-        }
-
+    if(usersWord.trim() == "") {
+        document.getElementById("inputWord").innerHTML =  `No word was provided`;
     }
-
-    document.getElementById("inputWord").innerHTML =  wordCount + "";
+    else{
+        let word = "";
+        let wordCount = 0;
+        for(let i = 0 ; i < words.length;i++){
+            word = words[i].toLowerCase();
+            if(word.includes(usersWord)){
+                wordCount++;
+            }
+        }
+        document.getElementById("inputWord").innerHTML =  `${wordCount}`;
+    }
 }
 
 function bigramCounter(words){
-
+    // ["The", "sun", "is", "shinning"]
+    // ["The sun", "sun is", "is shining"]
+    // "This is a" --> 3
+    // "this is this is" --> 1 
+    let obj = {};
+    for(let i = 1; i < words.length; i++){
+        firstWord = words[i-1];
+        secondWord = words[i];
+        let pair = `${firstWord} ${secondWord}` 
+        obj[pair] = obj[pair]? obj[pair]+1: 1;
+    }
+    document.getElementById("bigram").innerHTML = "";
+    for(let [key, occurance] of Object.entries(obj)){
+        let data = `${key} : ${occurance}`;
+        document.getElementById("bigram").innerHTML +=  "</br>"+ data;
+    }
 }
